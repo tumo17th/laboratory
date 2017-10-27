@@ -1,0 +1,95 @@
+@REM cmdで曜日計算（by ツェラーの公式、フェアフィールドの公式)
+
+
+----------------------------------------------------------------------
+■Fiarfield
+
+@REM dateの分解
+SET YY=%date:~0,4%
+SET MM=%date:~5,2%
+SET DD=%date:~8,2%
+
+@REM ゼロを補正
+IF "0"=="%YY:~0,1%" SET YY=%YY:~1,1%
+IF "0"=="%MM:~0,1%" SET MM=%MM:~1,1%
+IF "0"=="%DD:~0,1%" SET DD=%DD:~1,1%
+
+@REM 曜日計算(フェアフィールドの公式より)
+@REM https://mathtrain.jp/urudoshi
+@REM w = (365y + [y/4] - [y/100] + [y/400] + [306(m+1)/10] + d - 428) mod 7
+SET /A PARAM1 = 365 * %YY%
+SET /A PARAM2 = %YY% / 4
+SET /A PARAM3 = %YY% / 100
+SET /A PARAM4 = %YY% / 400
+SET /A PARAM5 = 306 * ( %MM% + 1 ) / 10
+SET /A PARAM6 = %DD%
+SET /A WW = ( %PARAM1% + %PARAM2% - %PARAM3% + %PARAM4% + %PARAM5% + %PARAM6% - 428) % 7
+
+@REM 結果
+@REM Week s m t w t f s
+@REM %WW% 0 1 2 3 4 5 6
+ECHO %WW%
+
+----------------------------------------------------------------------
+■Zeller
+
+@REM dateの分解（HHYY年MM月DD日）
+SET HH=%date:~0,2%
+SET YY=%date:~2,2%
+SET MM=%date:~5,2%
+SET DD=%date:~8,2%
+
+@REM ゼロを補正
+IF "0"=="%YY:~0,1%" SET YY=%YY:~1,1%
+IF "0"=="%MM:~0,1%" SET MM=%MM:~1,1%
+IF "0"=="%DD:~0,1%" SET DD=%DD:~1,1%
+
+@REM 曜日計算(ツェラーの公式より)
+@REM http://blog.fne.jp/2016/01/post-625.html & Wiki >> 若干修正
+@REM w = (5h + y + [y/4] + [h/4] + [(26(m+1)/10] + d) mod 7
+SET /A PARAM1 = 5 * %HH%
+SET /A PARAM2 = %YY%
+SET /A PARAM3 = %YY% / 4
+SET /A PARAM4 = %HH% / 4
+SET /A PARAM5 = 26 * ( %MM% + 1 ) / 10
+SET /A PARAM6 = %DD%
+SET /A WW = ( %PARAM1% + %PARAM2% + %PARAM3% + %PARAM4% + %PARAM5% + %PARAM6% - 1) % 7
+
+@REM 結果
+@REM Week s m t w t f s
+@REM %WW% 0 1 2 3 4 5 6
+ECHO %WW%
+
+----------------------------------------------------------------------
+■Zellerその2 >> 土曜が0
+
+@REM dateの分解（HHYY年MM月DD日）
+SET HH=%date:~0,2%
+SET YY=%date:~2,2%
+SET MM=%date:~5,2%
+SET DD=%date:~8,2%
+
+@REM ゼロを補正
+IF "0"=="%YY:~0,1%" SET YY=%YY:~1,1%
+IF "0"=="%MM:~0,1%" SET MM=%MM:~1,1%
+IF "0"=="%DD:~0,1%" SET DD=%DD:~1,1%
+
+@REM 曜日計算(ツェラーの公式より)
+@REM http://www004.upp.so-net.ne.jp/s_honma/doweek.htm
+@REM w = (y + [y/4] + [h/4] - 2h + [13(m+1)/5] + d) mod 7
+SET /A PARAM1 = %YY%
+SET /A PARAM2 = %YY% / 4
+SET /A PARAM3 = %HH% / 4
+SET /A PARAM4 = %HH% * 2
+SET /A PARAM5 = 13 * (%MM% + 1) / 5
+SET /A PARAM6 = %DD%
+SET /A WW = (%PARAM1% + %PARAM2% + %PARAM3% - %PARAM4% + %PARAM5% + %PARAM6%) % 7
+
+@REM 結果
+@REM Week s m t w t f s
+@REM %WW% 1 2 3 4 5 6 0
+ECHO %WW%
+
+----------------------------------------------------------------------
+
+
