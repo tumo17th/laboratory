@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE logback>
+<configuration>
+
+    <!-- STDOUT -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{HH:mm:ss} [%logger] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- FILE -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/poitto-kosu.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>log/poitto-kosu-%d{yyyyMMdd_HHmm}.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%date{HH:mm:ss} [%logger] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- ROOT -->
+    <root>
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2
+		http://maven.apache.org/xsd/assembly-1.1.2.xsd
+	">
+
+    <id>bin</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>src/main/resources/bin</directory>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>/</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>README.txt</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>/output</directory>
+            <outputDirectory>/output</outputDirectory>
+            <excludes>
+                <exclude>**.xlsx</exclude>
+                <exclude>**.txt</exclude>
+                <exclude>**.gitkeep</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
+            <directory>/input</directory>
+            <outputDirectory>/input</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>/config/prod</directory>
+            <outputDirectory>/config</outputDirectory>
+            <includes>
+                <include>client_secret.json</include>
+                <include>poittokosu.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+    <dependencySets>
+        <dependencySet>
+            <unpack>false</unpack>
+            <scope>runtime</scope>
+            <outputDirectory>/lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+
+</assembly>
+	
