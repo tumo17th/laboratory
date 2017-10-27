@@ -14,6 +14,10 @@ IF "0"=="%YY:~0,1%" SET YY=%YY:~1,1%
 IF "0"=="%MM:~0,1%" SET MM=%MM:~1,1%
 IF "0"=="%DD:~0,1%" SET DD=%DD:~1,1%
 
+@REM 1月2月は13月14月として計算
+if %MM% leq 2 SET /A YY = %YY% - 1
+if %MM% leq 2 SET /A MM = %MM% + 12
+
 @REM 曜日計算(フェアフィールドの公式より)
 @REM https://mathtrain.jp/urudoshi
 @REM w = (365y + [y/4] - [y/100] + [y/400] + [306(m+1)/10] + d - 428) mod 7
@@ -44,6 +48,10 @@ IF "0"=="%YY:~0,1%" SET YY=%YY:~1,1%
 IF "0"=="%MM:~0,1%" SET MM=%MM:~1,1%
 IF "0"=="%DD:~0,1%" SET DD=%DD:~1,1%
 
+@REM 1月2月は13月14月として計算
+if %MM% leq 2 SET /A YY = %YY% - 1
+if %MM% leq 2 SET /A MM = %MM% + 12
+
 @REM 曜日計算(ツェラーの公式より)
 @REM http://blog.fne.jp/2016/01/post-625.html & Wiki >> 若干修正
 @REM w = (5h + y + [y/4] + [h/4] + [(26(m+1)/10] + d) mod 7
@@ -73,6 +81,10 @@ SET DD=%date:~8,2%
 IF "0"=="%YY:~0,1%" SET YY=%YY:~1,1%
 IF "0"=="%MM:~0,1%" SET MM=%MM:~1,1%
 IF "0"=="%DD:~0,1%" SET DD=%DD:~1,1%
+
+@REM 1月2月は13月14月として計算
+if %MM% leq 2 SET /A YY = %YY% - 1
+if %MM% leq 2 SET /A MM = %MM% + 12
 
 @REM 曜日計算(ツェラーの公式より)
 @REM http://www004.upp.so-net.ne.jp/s_honma/doweek.htm
