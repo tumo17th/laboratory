@@ -1,0 +1,28 @@
+
+
+■機能要件
+
+・ダブルクリックでサーバー起動
+・DBは「モック、組み込み、連携」の３タイプを提供 (GAEも??)
+・Githubのreleaseページでwarファイル配布
+・Googleアカウント認証？？(OAuth, OpenID)
+・多言語対応？？
+
+
+・GoogleのMaterialized View Liteを利用
+
+
+
+・GSONでJSON生成
+
+・CSRF対策
+・アンカータグ「#」による、ブラウザ戻るボタン制御
+  >> 検索条件などは、#以下に記載 >> Ajaxで描画
+
+・Contextにどの情報を持たすか(DB-Typeなど)
+・Sessionにどの情報を持たすか
+
+
+
+
+

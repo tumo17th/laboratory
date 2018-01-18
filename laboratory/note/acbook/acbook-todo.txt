@@ -1,0 +1,32 @@
+
+ToDo
+
+
+■API-Server
+
+1.Project作成
+2.JerseyのRESTサーバーを立てる
+3.オブジェクトをJSON形式で返すよう実装
+4.組み込みDBの実装
+5.API Resourceの整備
+
+6.warファイル生成できるようpom.xmlを修正
+7.ダブルクリックでサーバーが立ち上がるよう実装
+
+
+■Client-Web
+
+1.SpringWebでClientサーバーを立てる
+2.各画面を実装
+3.Angular ?? を使って、画面描画
+4.jqGrid ?? SlickGrid ?? とにかくjsのGridフレームワークを使って、コンテンツ描画
+5.デザイン調整 >> Google Materialized View Liteをあてる
+6.スマホ画面対応？
+
+7.warファイル生成できるようpom.xmlを修正
+8.最終成果物として、API-ServerとClient-Webが同居した
+  earファイルを生成することを目標とする？
+
+
+
+
